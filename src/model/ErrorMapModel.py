@@ -82,3 +82,10 @@ def CreatErrorMapModel(input_shape, lastLayerActivation='hard_sigmoid', Percenta
     whole_model.compile(loss=lossFunction,optimizer=optimizers.SGD(lr=1e-4, momentum=0.9), metrics=['mae', 'acc'])
     return  whole_model
 
+def main():
+    model = CreatErrorMapModel((224, 224, 3))
+    model.save('test.h5')
+    pass
+
+if __name__ == '__main__':
+    main()

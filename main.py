@@ -1,4 +1,4 @@
-#from src.model.models import generator_unet_upsampling
+from src.model.models import generator_unet_upsampling
 from PIL import Image
 import h5py
 import cv2
@@ -12,25 +12,28 @@ from keras.models import load_model
 from config import CONFIG
 
 img_dim = 224
-output_path = 'static/results'
+output_path = 'static/results/'
 
 # Make dictionary
 if not CONFIG['development']:
-    # print 'Loading p2d_model'
-    # p2d_model = load_model('weights/model_resglass.h5')
+    print('Loading p2d_model')
+    p2d_model = generator_unet_upsampling((256, 256, 3), 1, 1)
+    p2d_model.load_weights('weights/pix2pix_depth.h5')
+    print(len(p2d_model.layers))
 
     # print 'Loading d2p_model'
     # d2p_model = load_model('weights/model_resglass.h5')
+
     model_list = {  
             'pix2depth':{ 
-                'pix2pix' : load_model('weights/pix2pix_depth.h5'),
-                'CycleGAN':load_model('weights/p2d_cycle.h5'),
-                'CNN': load_model('weights/p2d_cnn.h5'),
+                'pix2pix' : p2d_model,
+                #'CycleGAN':load_model('weights/p2d_cycle.h5'),
+                #'CNN': load_model('weights/p2d_cnn.h5'),
                 },
-            'depth2pix':{ 
-                'pix2pix' : load_model('weights/d2p_pix2pix.h5'),
-                'CycleGAN':load_model('weights/d2p_cycle.h5'),
-                }
+            #'depth2pix':{ 
+                #'pix2pix' : load_model('weights/d2p_pix2pix.h5'),
+                #'CycleGAN':load_model('weights/d2p_cycle.h5'),
+            #    }
              }
 
 def pix2depth(path, model):

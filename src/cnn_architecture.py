@@ -117,6 +117,7 @@ if __name__ == "__main__":
     else:
         model = model_3()
     model.summary()
+    model.save('model_%s.h5' % model_name)
 
     print((X.shape, Y.shape))
     print('Training ...')

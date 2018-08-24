@@ -91,5 +91,5 @@ def example():
 
 
 if __name__ == "__main__":
-    development = CONFIG.getboolean('development', False)
+    development = CONFIG['development']
     app.run(debug=CONFIG['development'], host=CONFIG['host'], port=CONFIG['port'])
