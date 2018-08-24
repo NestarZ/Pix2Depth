@@ -8,8 +8,8 @@ import numpy as np
 import cv2
 from keras.applications.resnet50 import preprocess_input
 from keras.models import load_model
+
 from config import CONFIG
-from inf_cycle import test, test_dep
 
 img_dim = 224
 output_path = 'static/results'
@@ -23,7 +23,7 @@ if not CONFIG['development']:
     # d2p_model = load_model('weights/model_resglass.h5')
     model_list = {  
             'pix2depth':{ 
-                'pix2pix' : load_model('weights/p2d_pix2pix.h5'),
+                'pix2pix' : load_model('weights/pix2pix_depth.h5'),
                 'CycleGAN':load_model('weights/p2d_cycle.h5'),
                 'CNN': load_model('weights/p2d_cnn.h5'),
                 },
@@ -43,7 +43,6 @@ def pix2depth(path, model):
         originalImage = cv2.resize(originalImage,(img_dim,img_dim))
         x = preprocess_input(originalImage/1.)
     elif model == 'CycleGAN':
-        test(path)
         os.system('cp gautam/inf_results/imgs/fakeA_0_0.jpg %s' % output_file)
     else:
         originalImage = cv2.resize(originalImage,(256,256))
@@ -64,7 +63,6 @@ def depth2pix(path,model):
         originalImage = cv2.resize(originalImage,(img_dim,img_dim))
         x = preprocess_input(originalImage/1.)
     elif model == 'CycleGAN':
-        test_dep(path)
         os.system('cp gautam/inf_results/imgs/fakeB_0_0.jpg %s' % output_file)
     else:
         originalImage = cv2.resize(originalImage,(256,256))
@@ -78,16 +76,16 @@ def blur_effect(image, depthImage, outputPath):
     try:
         if len(depthImage.shape) == 3:
             depthImage = np.mean(depthImage, axis=-1).astype(int)
-        print depthImage.shape
+        print((depthImage.shape))
         (h, w) = depthImage.shape
         image = cv2.resize(image, (h,w))
         blurredImage = cv2.GaussianBlur(image,(5,5),0)
-        print 'b'
+        print('b')
         # Need path to depth Image
         thresh = 200
         maskImage = cv2.threshold(depthImage, thresh, 255, cv2.THRESH_BINARY)[1]
-        print maskImage.shape
-        print h,w
+        print((maskImage.shape))
+        print((h,w))
         new_image = np.zeros((h, w, 3),dtype=np.int)
         for i in range(len(maskImage)):
             for j in range(len(maskImage[i])):
@@ -102,7 +100,7 @@ def blur_effect(image, depthImage, outputPath):
         cv2.imwrite(outputPath, new_image)
         return True
     except Exception as e:
-        print e
+        print(e)
         return False
 
 

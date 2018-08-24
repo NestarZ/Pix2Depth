@@ -43,7 +43,7 @@ for i in range(0,200,5):
 	model = generator_unet_upsampling(img_dim, bn_mode, batch_size)
 	model.load_weights('../../models/CNN/gen_weights_epoch%d.h5' % i) #gen_weights_epoch45.h5
 	dmap = model.predict(dep)[0]
-	print dep[0][0][0]
-	print dep.shape
-	print dmap[0][0][0]
+	print((dep[0][0][0]))
+	print((dep.shape))
+	print((dmap[0][0][0]))
 	cv2.imwrite("test_%d.jpg" % i,np.hstack((dmap*255,dep[0]*255)))

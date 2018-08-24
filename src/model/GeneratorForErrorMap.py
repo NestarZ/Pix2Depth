@@ -40,4 +40,4 @@ if __name__ == "__main__":
 	(ErrorMapGen,length) =GeneratorErrorMap(img_dim, batch_size=batch_size,modelEpoch=130, threshold=0.1)
 	(img, ErrorMap) = ErrorMapGen.__next__()
 	print(ErrorMap)
-	print(ErrorMap.shape)
+	print((ErrorMap.shape))

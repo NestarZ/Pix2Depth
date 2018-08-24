@@ -14,7 +14,7 @@ from ErrorMapModel import customLoss
 
 def l1_loss(y_true, y_pred):
 #    return K.sum(K.abs(y_pred - y_true), axis=-1)
-     print("in loss function shape",y_true.shape)
+     print(("in loss function shape",y_true.shape))
      return customLoss( y_true,y_pred)
 
 def train(**kwargs):
@@ -146,7 +146,7 @@ def train(**kwargs):
                     break
 
             print("")
-            print('Epoch %s/%s, Time: %s' % (e + 1, nb_epoch, time.time() - start))
+            print(('Epoch %s/%s, Time: %s' % (e + 1, nb_epoch, time.time() - start)))
 
             if e % 5 == 0:
                 gen_weights_path = os.path.join('../../models/%s/gen_weights_epoch%s.h5' % (model_name, e))

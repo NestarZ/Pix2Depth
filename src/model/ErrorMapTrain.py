@@ -49,7 +49,7 @@ if __name__ == '__main__':
     f = h5py.File(path)
     ErrorMapGen , length =GeneratorErrorMap(img_dim, batch_size=1,modelEpoch=130, threshold=0.1,f=f)
     x1, ErrorMap = ErrorMapGen.__next__() 
-    print(ErrorMap.shape)
+    print((ErrorMap.shape))
 #    img, ErrorMap = ErrorMapGen.__next__()                             # Python 3 syntax. Use .next() instead for Python 2.
 ####################################################
 #    nb_train_samples = 20

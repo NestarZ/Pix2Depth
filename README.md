@@ -33,29 +33,7 @@ Place the downloaded file in the folder data/
 ## Running and evaluating
 
 ### Configurations
-```
-CONFIG = {
-        'development': False,
-        'host': [host],
-        'port': [port_number],
-        'pix2depth':{
-                'first_option':'pix2pix',
-                'second_option':'CycleGAN',
-                'third_option':'CNN',
-        },
-        'depth2pix':{
-                'first_option':'pix2pix',
-                'second_option':'CycleGAN',
-                'third_option':'MSCNN'
-        },
-        'portrait':{
-                'first_option': 'pix2pix',
-                'second_option': 'CycleGAN',
-                'third_option': 'CNN'
-        }
-}
-
-```
+Inside `config.yml`.
 
 ### Configure path to models
 

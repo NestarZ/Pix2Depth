@@ -52,10 +52,10 @@ model=CreatErrorMapModel(input_shape=img_dim,lastLayerActivation=lastLayerActiva
 for i in range(0,26,5):
 	model.load_weights('../../models/'+modelDir+'/'+ modelPrefix+'gen_weights_epoch%d.h5' % i) #gen_weights_epoch45.h5
 	dmap = model.predict(img)[0]
-	print (dep[0][0][0])
-	print (dep.shape)
-	print (dmap[0][0])
-	print(img[0][0][0])
+	print((dep[0][0][0]))
+	print((dep.shape))
+	print((dmap[0][0]))
+	print((img[0][0][0]))
 	cv2.imwrite( tesDir+"/"+modelDir+"/test_%d.jpg" % i,np.hstack((dmap*255,dep[0]*255)))
 
 print ("Image to Depth is calculated here")

@@ -76,7 +76,7 @@ def example():
         epoch = str(min([32, int(epoch)]))
     path = 'http://www.cs.virginia.edu/~ks6cq/cyclegan-1/output/cyclegan/exp_rgb2dep/20171202-023330/imgs/'
     img = str(0)
-    print epoch
+    print(epoch)
     populate_page = []
     image_types = ['input','fake','cyc']
     a2b = ['A','B']
@@ -91,5 +91,5 @@ def example():
 
 
 if __name__ == "__main__":
-    development = CONFIG['development']
+    development = CONFIG.getboolean('development', False)
     app.run(debug=CONFIG['development'], host=CONFIG['host'], port=CONFIG['port'])

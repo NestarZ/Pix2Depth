@@ -1,0 +1,18 @@
+development: false
+host: 0.0.0.0
+port: 8080
+
+pix2depth:
+  first_option: pix2pix
+  second_option: CycleGAN
+  third_option: CNN
+
+depth2pix:
+  first_option: pix2pix
+  second_option: CycleGAN
+  third_option: MSCNN
+
+portrait:
+  first_option: pix2pix
+  second_option: CycleGAN
+  third_option: CNN

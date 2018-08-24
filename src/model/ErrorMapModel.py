@@ -43,12 +43,12 @@ def CreatErrorMapModel(input_shape, lastLayerActivation='hard_sigmoid', Percenta
 #    
     BaseModel=Model(sharedResnet.input, sharedResnet.layers[STOP_LAYER].output)
     x = BaseModel.output
-    print("x output shapr is ", x.shape)
+    print(("x output shapr is ", x.shape))
     x=Conv2D(32, (3, 3), padding='same', activation='relu')(x)
     x=BatchNormalization()(x)
     x=Conv2D(16, (3, 3), padding='same', activation='relu')(x)
     x=BatchNormalization()(x)
-    print("x output shapr is ", x.shape)    
+    print(("x output shapr is ", x.shape))    
     x = Deconv2D(8, (3, 3), strides=(2, 2), padding="same",  activation='relu')(x)
     x=BatchNormalization()(x)
     x = Deconv2D(4, (3, 3), strides=(2, 2), padding="same", activation='relu')(x)
@@ -68,12 +68,12 @@ def CreatErrorMapModel(input_shape, lastLayerActivation='hard_sigmoid', Percenta
 #    print (resnet.layers)
     
     p=int((PercentageOfTrianable/100)*len(whole_model.layers))
-    print(len(whole_model.layers), p)
+    print((len(whole_model.layers), p))
     for layer in whole_model.layers[:p]:
     	layer.trainable = False
    
     for i,l in enumerate(whole_model.layers):
-    	print(i,"  ",l," ",l.output_shape,"\n")
+    	print((i,"  ",l," ",l.output_shape,"\n"))
 
 #    whole_model.summary() 
     print(lossFunction)

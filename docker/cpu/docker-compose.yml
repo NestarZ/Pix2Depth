@@ -1,0 +1,16 @@
+version: '2.3'
+services:
+  pix2depth-deepo:
+    image: ufoym/deepo:cpu
+    volumes: 
+      - ../../:/app/
+    ports:
+      - 8080:8080
+      - 8888:8888
+      - 6060:6060
+      - 6006:6006
+    command: tail -f /dev/null
+    working_dir: /app/
+    tty: true
+    stdin_open: true
+    ipc: host
